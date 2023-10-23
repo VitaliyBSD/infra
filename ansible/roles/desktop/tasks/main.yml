@@ -1,0 +1,41 @@
+---
+
+- name: Install desktop related packages
+  ansible.builtin.apt:
+    name: '{{ item }}'
+    autoremove: true
+    clean: true
+    state: present
+  with_items:
+    - abcde
+    - arandr
+    - feh
+    - firefox-esr
+    - fonts-font-awesome
+    - fonts-liberation
+    - fonts-noto-core
+    - fonts-noto-mono
+    - fonts-open-sans
+    - fonts-terminus-otb
+    - keepassx
+    - kitty
+    - musikcube
+    - pulsemixer
+    - sway
+    - syncthing
+    - vlc
+    - weechat
+
+- name: Populate NeoVIM config
+  template:
+    src: nvim_init.j2
+    dest: /home/{{ username }}/.config/nvim/init.vim
+    owner: '{{ username }}'
+    group: '{{ username }}'
+
+- name: Populate Sway config
+  template:
+    src: sway.config.j2
+    dest: /home/{{ username }}/.config/sway/config
+    owner: '{{ username }}'
+    group: '{{ username }}'
