@@ -27,15 +27,22 @@
     - weechat
 
 - name: Populate NeoVIM config
-  template:
+  ansible.builtin.template:
     src: nvim_init.j2
     dest: /home/{{ username }}/.config/nvim/init.vim
     owner: '{{ username }}'
     group: '{{ username }}'
 
 - name: Populate Sway config
-  template:
+  ansible.builtin.template:
     src: sway.config.j2
     dest: /home/{{ username }}/.config/sway/config
+    owner: '{{ username }}'
+    group: '{{ username }}'
+
+- name: Populate Kitty config
+  ansible.builtin.template:
+    src: kitty.conf.j2
+    dest: /home/{{ username }}/.config/kitty/kitty.conf
     owner: '{{ username }}'
     group: '{{ username }}'
