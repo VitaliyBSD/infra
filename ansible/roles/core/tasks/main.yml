@@ -1,0 +1,46 @@
+---
+
+- name: Create user
+  ansible.builtin.user:
+    name: '{{ username }}'
+    shell: /bin/bash
+    append: true
+    groups: sudo
+
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: '{{ item }}'
+    autoremove: true
+    clean: true
+    state: present
+  with_items:
+    - ansible
+    - asdftool
+    - bind9-dnsutils
+    - curl
+    - ethtool
+    - git
+    - hdparm
+    - htop
+    - iftop
+    - iotop
+    - jq
+    - lftp
+    - lm-sensors
+    - lshw
+    - mtr
+    - neovim
+    - net-tools
+    - netcat-traditional
+    - nmap
+    - openssh-client
+    - openssh-server
+    - pv
+    - tcpdump
+    - tig
+    - tmux
+    - tree
+    - unrar
+    - unzip
+    - wget
+    - whois

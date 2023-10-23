@@ -1,0 +1,82 @@
+---
+
+- name: Create user
+  ansible.builtin.user:
+    name: '{{ username }}'
+    shell: /bin/bash
+    append: true
+    groups: sudo
+
+
+# - name: Populate APT sources to testing
+#   ansible.builtin.template:
+#     src: sources.list.j2
+#     dest: /etc/apt/sources.list
+#     owner: root
+#     group: root
+
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: '{{ item }}'
+    autoclean: true
+    autoremove: true
+    clean: true
+    state: installed
+  with_items:
+    - 7zip
+    - abcde
+    - aircrack-ng
+    - ansible
+    - arandr
+    - asdftool
+    - bind9-dnsutils
+    - curl
+    - ethtool
+    - feh
+    - firefox-esr
+    - fonts-font-awesome
+    - fonts-liberation
+    - fonts-noto-core
+    - fonts-noto-mono
+    - fonts-open-sans
+    - fonts-terminus-otb
+    - gimp
+    - git
+    - golang
+    - hdparm
+    - htop
+    - hugo
+    - iftop
+    - imagemagick
+    - inkscape
+    - iotop
+    - jq
+    - jq
+    - keepassx
+    - kitty
+    - lftp
+    - lm-sensors
+    - lshw
+    - mtr
+    - neovim
+    - net-tools
+    - netcat-traditional
+    - nmap
+    - openssh-client
+    - openssh-server
+    - p7zip
+    - pulsemixer
+    - pv
+    - sway
+    - syncthing
+    - tcpdump
+    - tig
+    - tmux
+    - tree
+    - unrar
+    - unzip
+    - vlc
+    - weechat
+    - wget
+    - whois
+    - wireless-tools
