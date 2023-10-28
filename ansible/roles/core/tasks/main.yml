@@ -1,5 +1,9 @@
 ---
 
+- name: Configure timezone
+  community.general.timezone:
+    name: America/New_York
+
 - name: Create user
   ansible.builtin.user:
     name: '{{ username }}'
