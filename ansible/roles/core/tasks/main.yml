@@ -1,5 +1,9 @@
 ---
 
+- name: Configure hostname
+  ansible.builtin.hostname:
+    name: '{{ inventory_hostname }}'
+
 - name: Configure timezone
   community.general.timezone:
     name: America/New_York
