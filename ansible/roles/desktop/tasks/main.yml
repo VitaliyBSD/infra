@@ -8,7 +8,9 @@
     state: present
   with_items:
     - abcde
+    - ansible
     - arandr
+    - asdftool
     - feh
     - firefox-esr
     - fonts-font-awesome
@@ -17,12 +19,14 @@
     - fonts-noto-mono
     - fonts-open-sans
     - fonts-terminus-otb
+    - git
     - keepassx
     - kitty
     - musikcube
     - pulsemixer
     - sway
     - syncthing
+    - tig
     - vlc
     - weechat
 

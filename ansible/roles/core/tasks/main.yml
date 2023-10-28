@@ -18,12 +18,9 @@
     clean: true
     state: present
   with_items:
-    - ansible
-    - asdftool
     - bind9-dnsutils
     - curl
     - ethtool
-    - git
     - hdparm
     - htop
     - iftop
@@ -41,7 +38,6 @@
     - openssh-server
     - pv
     - tcpdump
-    - tig
     - tmux
     - tree
     - unrar
