@@ -1,0 +1,22 @@
+---
+
+- name: Install Prometheus
+  ansible.builtin.apt:
+    name: prometheus
+    state: present
+
+- name: Populate Prometheus config
+  ansible.builtin.template:
+    src: prometheus.yml.j2
+    dest: /etc/prometheus/prometheus.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart Prometheus
+
+- name: Start and enable Prometheus service
+  ansible.builtin.service:
+    name: prometheus
+    state: started
+    enabled: yes
