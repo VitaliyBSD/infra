@@ -2,8 +2,11 @@
 
 - name: Install Prometheus
   ansible.builtin.apt:
-    name: prometheus
+    name: '{{ item }}'
     state: present
+  with_items:
+    - prometheus
+    - prometheus-alertmanager
 
 - name: Populate Prometheus config
   ansible.builtin.template:
@@ -15,8 +18,24 @@
   notify:
     - Restart Prometheus
 
+- name: Populate Alertmanager config
+  ansible.builtin.template:
+    src: alertmanager.yml.j2
+    dest: /etc/prometheus/alertmanager.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart Alertmanager
+
 - name: Start and enable Prometheus service
   ansible.builtin.service:
     name: prometheus
+    state: started
+    enabled: yes
+
+- name: Start and enable Alertmanager service
+  ansible.builtin.service:
+    name: prometheus-alertmanager
     state: started
     enabled: yes
