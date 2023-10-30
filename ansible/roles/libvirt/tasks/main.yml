@@ -13,3 +13,17 @@
     name: libvirtd
     enabled: yes
     state: started
+
+- name: Add user to libvirt group
+  ansible.builtin.user:
+    name: "{{ username }}"
+    groups: libvirt
+    append: yes
+
+- name: Create /srv/libvirt
+  ansible.builtin.file:
+    path: /srv/libvirt
+    state: directory
+    owner: libvirt-qemu
+    group: libvirt
+    mode: 0775
