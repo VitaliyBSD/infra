@@ -15,6 +15,14 @@
     append: true
     groups: sudo
 
+- name: Create sudo config for user
+  ansible.builtin.template:
+    src: sudo_user.j2
+    dest: /etc/sudoers.d/vitaliy
+    owner: root
+    group: root
+    mode: 0400
+
 - name: Install dependencies
   ansible.builtin.apt:
     name: '{{ item }}'
@@ -44,7 +52,6 @@
     - tcpdump
     - tmux
     - tree
-    - unrar
     - unzip
     - wget
     - whois
