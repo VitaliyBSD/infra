@@ -41,6 +41,7 @@
     - lftp
     - lm-sensors
     - lshw
+    - lsof
     - mtr
     - neovim
     - net-tools
