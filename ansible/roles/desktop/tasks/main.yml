@@ -45,6 +45,27 @@
     owner: '{{ username }}'
     group: '{{ username }}'
 
+- name: Create config.d for sway
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/sway/config.d
+    state: directory
+    owner: '{{ username }}'
+    group: '{{ username }}'
+
+- name: Populate Sway startup config
+  ansible.builtin.template:
+    src: sway_startup.conf.j2
+    dest: /home/{{ username }}/.config/sway/config.d/startup.conf
+    owner: '{{ username }}'
+    group: '{{ username }}'
+
+- name: Populate Sway theme config
+  ansible.builtin.template:
+    src: sway_theme.conf.j2
+    dest: /home/{{ username }}/.config/sway/config.d/theme.conf
+    owner: '{{ username }}'
+    group: '{{ username }}'
+
 - name: Populate Kitty config
   ansible.builtin.template:
     src: kitty.conf.j2
