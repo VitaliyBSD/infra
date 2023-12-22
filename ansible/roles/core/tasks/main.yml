@@ -10,24 +10,24 @@
 
 - name: Create user
   ansible.builtin.user:
-    name: '{{ username }}'
-    shell: /bin/bash
     append: true
     groups: sudo
+    name: '{{ username }}'
+    shell: /bin/bash
 
 - name: Create sudo config for user
   ansible.builtin.template:
-    src: sudo_user.j2
     dest: /etc/sudoers.d/vitaliy
-    owner: root
     group: root
-    mode: 0400
+    mode: "0400"
+    owner: root
+    src: sudo_user.j2
 
 - name: Install dependencies
   ansible.builtin.apt:
-    name: '{{ item }}'
     autoremove: true
     clean: true
+    name: '{{ item }}'
     state: present
   with_items:
     - bind9-dnsutils

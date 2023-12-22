@@ -33,42 +33,48 @@
 
 - name: Populate NeoVIM config
   ansible.builtin.template:
-    src: nvim_init.j2
     dest: /home/{{ username }}/.config/nvim/init.vim
-    owner: '{{ username }}'
     group: '{{ username }}'
+    mode: "0640"
+    owner: '{{ username }}'
+    src: nvim_init.j2
 
 - name: Populate Sway config
   ansible.builtin.template:
-    src: sway.config.j2
     dest: /home/{{ username }}/.config/sway/config
-    owner: '{{ username }}'
     group: '{{ username }}'
+    mode: "0640"
+    owner: '{{ username }}'
+    src: sway.config.j2
 
 - name: Create config.d for sway
   ansible.builtin.file:
+    group: '{{ username }}'
+    mode: "0640"
+    owner: '{{ username }}'
     path: /home/{{ username }}/.config/sway/config.d
     state: directory
-    owner: '{{ username }}'
-    group: '{{ username }}'
 
 - name: Populate Sway startup config
   ansible.builtin.template:
-    src: sway_startup.conf.j2
     dest: /home/{{ username }}/.config/sway/config.d/startup.conf
-    owner: '{{ username }}'
     group: '{{ username }}'
+    mode: "0640"
+    owner: '{{ username }}'
+    src: sway_startup.conf.j2
 
 - name: Populate Sway theme config
   ansible.builtin.template:
-    src: sway_theme.conf.j2
     dest: /home/{{ username }}/.config/sway/config.d/theme.conf
-    owner: '{{ username }}'
     group: '{{ username }}'
+    mode: "0649"
+    owner: '{{ username }}'
+    src: sway_theme.conf.j2
 
 - name: Populate Kitty config
   ansible.builtin.template:
-    src: kitty.conf.j2
     dest: /home/{{ username }}/.config/kitty/kitty.conf
-    owner: '{{ username }}'
     group: '{{ username }}'
+    mode: "0640"
+    owner: '{{ username }}'
+    src: kitty.conf.j2
