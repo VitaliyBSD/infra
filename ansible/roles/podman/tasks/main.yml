@@ -24,7 +24,6 @@
 - name: Set sysctl net.ipv4.ip_unprivileged_port_start=53
   ansible.posix.sysctl:
     name: net.ipv4.ip_unprivileged_port_start
-    value: 53
     state: present
     sysctl_file: /etc/sysctl.d/podman.conf
-
+    value: 53

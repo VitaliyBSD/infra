@@ -1,29 +1,29 @@
 ---
 
 - name: Install libvirt
-  apt:
+  ansible.builtin.apt:
     name: '{{ item }}'
     state: present
   with_items:
-    - qemu-system
     - libvirt-daemon-system
+    - qemu-system
 
 - name: Start libvirtd
   ansible.builtin.service:
+    enabled: true
     name: libvirtd
-    enabled: yes
     state: started
 
 - name: Add user to libvirt group
   ansible.builtin.user:
-    name: "{{ username }}"
+    append: true
     groups: libvirt
-    append: yes
+    name: "{{ username }}"
 
 - name: Create /srv/libvirt
   ansible.builtin.file:
+    group: libvirt
+    mode: "0775"
+    owner: libvirt-qemu
     path: /srv/libvirt
     state: directory
-    owner: libvirt-qemu
-    group: libvirt
-    mode: 0775

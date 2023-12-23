@@ -10,32 +10,32 @@
 
 - name: Populate Prometheus config
   ansible.builtin.template:
-    src: prometheus.yml.j2
     dest: /etc/prometheus/prometheus.yml
-    owner: root
     group: root
-    mode: 0644
+    mode: "0644"
+    owner: root
+    src: prometheus.yml.j2
   notify:
     - Restart Prometheus
 
 - name: Populate Alertmanager config
   ansible.builtin.template:
-    src: alertmanager.yml.j2
     dest: /etc/prometheus/alertmanager.yml
-    owner: root
     group: root
-    mode: 0644
+    mode: "0644"
+    owner: root
+    src: alertmanager.yml.j2
   notify:
     - Restart Alertmanager
 
 - name: Start and enable Prometheus service
   ansible.builtin.service:
+    enabled: true
     name: prometheus
     state: started
-    enabled: yes
 
 - name: Start and enable Alertmanager service
   ansible.builtin.service:
+    enabled: true
     name: prometheus-alertmanager
     state: started
-    enabled: yes
