@@ -30,6 +30,7 @@
     - tig
     - vlc
     - weechat
+    - wlsunset
 
 - name: Populate NeoVIM config
   ansible.builtin.template:
